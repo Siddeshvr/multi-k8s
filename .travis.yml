@@ -21,3 +21,15 @@ after_success:
   - docker push siddeshvr/multi-nginx
   - docker push siddeshvr/multi-server
   - docker push siddeshvr/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "multi-docker"
+  env: "Multidocker-env"
+  bucket_name: "elasticbeanstalk-ap-south-1-858089721527"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
